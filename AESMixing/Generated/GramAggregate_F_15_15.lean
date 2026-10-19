@@ -1,0 +1,83 @@
+import AESMixing.GramCertificates.F_15_15_s0
+import AESMixing.GramCertificates.F_15_15_s1
+import AESMixing.GramCertificates.F_15_15_s2
+import AESMixing.GramCertificates.F_15_15_s3
+import AESMixing.GramCertificates.F_15_15_s4
+import AESMixing.GramCertificates.F_15_15_s5
+import AESMixing.GramCertificates.F_15_15_s6
+import AESMixing.GramCertificates.F_15_15_s7
+import AESMixing.GramCertificates.F_15_15_s8
+import AESMixing.GramCertificates.F_15_15_s9
+import AESMixing.GramCertificates.F_15_15_s10
+import AESMixing.GramCertificates.F_15_15_s11
+import AESMixing.GramCertificates.F_15_15_s12
+import AESMixing.GramCertificates.F_15_15_s13
+import AESMixing.GramCertificates.F_15_15_s14
+import AESMixing.GramCertificates.F_15_15_s15
+import AESMixing.GramCertificates.F_15_15_s16
+import AESMixing.GramCertificates.F_15_15_s17
+import AESMixing.GramCertificates.F_15_15_s18
+import AESMixing.GramCertificates.F_15_15_s19
+import AESMixing.GramCertificates.F_15_15_s20
+import AESMixing.GramCertificates.F_15_15_s21
+import AESMixing.GramCertificates.F_15_15_s22
+import AESMixing.GramCertificates.F_15_15_s23
+import AESMixing.GramCertificates.F_15_15_s24
+import AESMixing.AESGramOrientation
+open scoped BigOperators
+set_option maxRecDepth 1000000
+namespace AESMixing.GramPair.F_15_15
+-- Exhaustive aggregation: every mode has a unique block and within-block index.
+def blockRanks : Fin 25 → Fin 25 → ℕ := ![AESMixing.GramCertificates.F_15_15_s0.ranks, AESMixing.GramCertificates.F_15_15_s1.ranks, AESMixing.GramCertificates.F_15_15_s2.ranks, AESMixing.GramCertificates.F_15_15_s3.ranks, AESMixing.GramCertificates.F_15_15_s4.ranks, AESMixing.GramCertificates.F_15_15_s5.ranks, AESMixing.GramCertificates.F_15_15_s6.ranks, AESMixing.GramCertificates.F_15_15_s7.ranks, AESMixing.GramCertificates.F_15_15_s8.ranks, AESMixing.GramCertificates.F_15_15_s9.ranks, AESMixing.GramCertificates.F_15_15_s10.ranks, AESMixing.GramCertificates.F_15_15_s11.ranks, AESMixing.GramCertificates.F_15_15_s12.ranks, AESMixing.GramCertificates.F_15_15_s13.ranks, AESMixing.GramCertificates.F_15_15_s14.ranks, AESMixing.GramCertificates.F_15_15_s15.ranks, AESMixing.GramCertificates.F_15_15_s16.ranks, AESMixing.GramCertificates.F_15_15_s17.ranks, AESMixing.GramCertificates.F_15_15_s18.ranks, AESMixing.GramCertificates.F_15_15_s19.ranks, AESMixing.GramCertificates.F_15_15_s20.ranks, AESMixing.GramCertificates.F_15_15_s21.ranks, AESMixing.GramCertificates.F_15_15_s22.ranks, AESMixing.GramCertificates.F_15_15_s23.ranks, AESMixing.GramCertificates.F_15_15_s24.ranks]
+-- Each hexadecimal digit stores one rank; the least significant digit is mode zero.
+def ranks (i : Fin 625) : ℕ :=
+  (0x4544356554454434544334332565546766556554565544544345443565544544345443343324544356554454434544334332343324544334332343322322156554676655655456554454436766578776676656766556554565546766556554565544544356554676655655456554454434544356554454434544334332454435655445443454433433256554676655655456554454434544356554454434544334332454435655445443454433433234332454433433234332232214544356554454434544334332565546766556554565544544345443565544544345443343324544356554454434544334332343324544334332343322322134332454433433234332232214544356554454434544334332343324544334332343322322134332454433433234332232212322134332232212322112110 >>> (4*i.val)) % 16
+theorem block_counts (b t : Fin 25) : gramCaseCount false 15 15 (gramSubModeIndex b t) =
+    256^(8-blockRanks b t) := by
+  fin_cases b
+  · exact AESMixing.GramCertificates.F_15_15_s0.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s1.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s2.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s3.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s4.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s5.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s6.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s7.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s8.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s9.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s10.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s11.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s12.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s13.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s14.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s15.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s16.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s17.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s18.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s19.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s20.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s21.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s22.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s23.counts t
+  · exact AESMixing.GramCertificates.F_15_15_s24.counts t
+set_option maxHeartbeats 0 in
+theorem blockRanks_eq (b t : Fin 25) : blockRanks b t = ranks (gramSubModeIndex b t) := by
+  revert b t; decide
+theorem counts (i : Fin 625) : gramCaseCount false 15 15 i = 256^(8-ranks i) := by
+  have h := block_counts (gramSubBlock i) (gramSubWithin i)
+  rw [blockRanks_eq, gramSubModeIndex_split] at h
+  exact h
+def values : Fin 5 → ℤ := ![18160198153666560000, 0, 0, 0, 0]
+set_option maxHeartbeats 0 in
+theorem numerator_values (j : Fin 5) :
+    rankGramNumerator (fun m => ranks (finFunctionFinEquiv m)) j = values j := by
+  fin_cases j <;> decide
+theorem gram_entries (j : Fin 5) :
+    (∑ y, degreeComponent 0 j (diffusedActivityColumn (byteDiffusionOrientation false) 15) y *
+      degreeComponent 0 j (diffusedActivityColumn (byteDiffusionOrientation false) 15) y) =
+        (values j : ℝ)/255^4 := by
+  rw [oriented_activity_gram_from_ranks false j 15 15 ranks counts, numerator_values]
+#print axioms counts
+#print axioms numerator_values
+#print axioms gram_entries
+end AESMixing.GramPair.F_15_15

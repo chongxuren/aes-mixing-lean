@@ -1,0 +1,38 @@
+import AESMixing.GramCases
+namespace AESMixing.GramCertificates.F_11_15_s0
+-- Generated witness data; checked below by the Lean kernel.
+def certificates : Fin 25 → RankCertificate (BinaryWord 8) 16 8 :=
+![{ rank := ⟨1, by decide⟩, pivots := ![2], reduced := ![certificateRow 65536], leftInverse := ![certificateRow 65536] },
+{ rank := ⟨2, by decide⟩, pivots := ![0, 2], reduced := ![certificateRow 2365623297, certificateRow 65536], leftInverse := ![certificateRow 2600990914393056018432, certificateRow 65536] },
+{ rank := ⟨2, by decide⟩, pivots := ![2, 4], reduced := ![certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 65536, certificateRow 2600990914393046777856] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 2365623297, certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 2600990914393056018432, certificateRow 65536, certificateRow 11171170914511271600689696997376] },
+{ rank := ⟨2, by decide⟩, pivots := ![0, 2], reduced := ![certificateRow 10199962669352520705, certificateRow 65536], leftInverse := ![certificateRow 2600990914393056018432, certificateRow 65536] },
+{ rank := ⟨2, by decide⟩, pivots := ![0, 2], reduced := ![certificateRow 16777729, certificateRow 65536], leftInverse := ![certificateRow 4722366482869645410304, certificateRow 65536] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 1, 2], reduced := ![certificateRow 3506438145, certificateRow 1744830720, certificateRow 65536], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 16777729, certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 4722366482869645410304, certificateRow 65536, certificateRow 2600990914393046777856] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 1, 2, 4], reduced := ![certificateRow 3506438145, certificateRow 1744830720, certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536, certificateRow 11171170914511271600689696997376] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 1, 2], reduced := ![certificateRow 13382956920604721153, certificateRow 15118980569582534912, certificateRow 65536], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536] },
+{ rank := ⟨2, by decide⟩, pivots := ![2, 4], reduced := ![certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 65536, certificateRow 4722366482869645213696] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 2365623297, certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 2600990914393056018432, certificateRow 65536, certificateRow 4722366482869645213696] },
+{ rank := ⟨3, by decide⟩, pivots := ![2, 4, 5], reduced := ![certificateRow 65536, certificateRow 15060318633198616576, certificateRow 7494272354432843776], leftInverse := ![certificateRow 65536, certificateRow 494538761872079369273344, certificateRow 877493168842289660821504] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 2, 4, 5], reduced := ![certificateRow 2365623297, certificateRow 65536, certificateRow 15060318633198616576, certificateRow 7494272354432843776], leftInverse := ![certificateRow 2600990914393056018432, certificateRow 65536, certificateRow 14657210556265016673248733036544, certificateRow 16558686839119045887935050153984] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 10128188745019591681, certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 7323357397262701232128, certificateRow 65536, certificateRow 4722366482869645213696] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 16777729, certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 4722366482869645410304, certificateRow 65536, certificateRow 20282409603651670423947251286016] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 1, 2, 4], reduced := ![certificateRow 3506438145, certificateRow 1744830720, certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536, certificateRow 20282409603651670423947251286016] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 2, 4, 5], reduced := ![certificateRow 16777729, certificateRow 65536, certificateRow 15060318633198616576, certificateRow 7494272354432843776], leftInverse := ![certificateRow 4722366482869645410304, certificateRow 65536, certificateRow 2109370598783186371744150400794624, certificateRow 3752245776679414397941646784200704] },
+{ rank := ⟨5, by decide⟩, pivots := ![0, 1, 2, 4, 5], reduced := ![certificateRow 3506438145, certificateRow 1744830720, certificateRow 65536, certificateRow 15060318633198616576, certificateRow 7494272354432843776], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536, certificateRow 2124027808844912626545319764557824, certificateRow 3768804462641040274987292173533184] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 1, 2, 4], reduced := ![certificateRow 14988544712372125697, certificateRow 7494272356177674496, certificateRow 65536, certificateRow 72904222286282752], leftInverse := ![certificateRow 2129653008877964156386540754370560, certificateRow 3752245777553052197272531148800000, certificateRow 65536, certificateRow 20282409603651670423947251286016] },
+{ rank := ⟨2, by decide⟩, pivots := ![0, 2], reduced := ![certificateRow 72904222303060481, certificateRow 65536], leftInverse := ![certificateRow 4722366482869645410304, certificateRow 65536] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 1, 2], reduced := ![certificateRow 7546010324260880385, certificateRow 13389317937207181568, certificateRow 65536], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 2, 4], reduced := ![certificateRow 10128188742670746113, certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 7323357397262692188160, certificateRow 65536, certificateRow 2600990914393046777856] },
+{ rank := ⟨4, by decide⟩, pivots := ![0, 1, 2, 4], reduced := ![certificateRow 6668859083363188737, certificateRow 7494272356177674496, certificateRow 65536, certificateRow 10199962666986897408], leftInverse := ![certificateRow 4119864945280507426943654756352, certificateRow 16558686842974415399340346507264, certificateRow 65536, certificateRow 11171170914511271600689696997376] },
+{ rank := ⟨3, by decide⟩, pivots := ![0, 1, 2], reduced := ![certificateRow 15060318636705054721, certificateRow 7494272356177674496, certificateRow 65536], leftInverse := ![certificateRow 494538761872079369338880, certificateRow 877493168842289660887040, certificateRow 65536] }]
+set_option maxRecDepth 1000000 in
+set_option maxHeartbeats 0 in
+theorem checked (t : Fin 25) : (certificates t).Valid (gramCaseMatrix false 11 15 (gramSubModeIndex 0 t)) := by
+  fin_cases t <;> apply RankCertificate.valid_of_fast <;> decide
+def ranks (t : Fin 25) : ℕ := (certificates t).rank.val
+theorem counts (t : Fin 25) : gramCaseCount false 11 15 (gramSubModeIndex 0 t) = 256^(8-ranks t) :=
+  gramCaseCount_from_certificate _ _ _ _ (certificates t) (checked t)
+#print axioms counts
+end AESMixing.GramCertificates.F_11_15_s0
