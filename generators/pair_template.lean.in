@@ -1,0 +1,286 @@
+import AES8.Estimates.Word.PaperSharpEntriesPackedEntryChecker
+import AES8.Estimates.Word.PaperSharpEntriesIndexedChecker
+import AES8.Estimates.Word.PaperSharpEntriesInventoryAssembly
+namespace AES8.@@NAME@@
+open AES8.PaperSharpEntriesFinite AES8.PaperSharpEntriesFWHT AES8.PaperSharpEntriesPackedAllPowers AES8.PaperSharpEntriesPackedEntryChecker AES8.PaperSharpEntriesIndexedChecker AES8.PaperSharpEntriesFastMaps AES8.PaperSharpEntriesKernelTables
+set_option Elab.async false
+set_option maxRecDepth 65536
+set_option maxHeartbeats 80000000
+theorem caps (hcoeff : CoefficientSpec) :
+    (∀ (r : Fin 4) (gamma : Byte), mixedSum q ordinaryMapHom (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) gamma (r.val+1) ≤ 111) ∧
+    (∀ (r : Fin 2) (gamma : Byte), mixedSum h fourierMapHom (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) gamma (r.val+2) ≤ 7247757311) ∧
+    (∀ (r : Fin 2), mixedSum h fourierMapHom (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 0 (AES8.PaperSharpEntriesInventoryAssembly.extremePower r) ≤ 7247757311) := by
+  constructor
+  · intro r gamma
+    fin_cases r
+    ·
+      let stage0 : Vector := @@STAGE_00@@
+      let stage1 : Vector := @@STAGE_01@@
+      let stage2 : Vector := @@STAGE_02@@
+      let stage3 : Vector := @@STAGE_03@@
+      let stage4 : Vector := @@STAGE_04@@
+      let stage5 : Vector := @@STAGE_05@@
+      let stage6 : Vector := @@STAGE_06@@
+      let stage7 : Vector := @@STAGE_07@@
+      let stage8 : Vector := @@STAGE_08@@
+      let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+        | 0 => stage0
+        | 1 => stage1
+        | 2 => stage2
+        | 3 => stage3
+        | 4 => stage4
+        | 5 => stage5
+        | 6 => stage6
+        | 7 => stage7
+        | _ => stage8
+      have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+      have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+      have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+      have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+      have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+      have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+      have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+      have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+      have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+        fin_cases s
+        · exact step0
+        · exact step1
+        · exact step2
+        · exact step3
+        · exact step4
+        · exact step5
+        · exact step6
+        · exact step7
+      have initial : PaperSharpEntriesVectorChecker.checkInitial stages (ordinaryInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 1) = true := by decide +kernel
+      have caps : PaperSharpEntriesVectorChecker.checkCaps stages 111 = true := by decide +kernel
+      have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+      exact ordinary_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 1 (by omega) (by omega) stages initial steps caps gamma
+    ·
+      let stage0 : Vector := @@STAGE_09@@
+      let stage1 : Vector := @@STAGE_10@@
+      let stage2 : Vector := @@STAGE_11@@
+      let stage3 : Vector := @@STAGE_12@@
+      let stage4 : Vector := @@STAGE_13@@
+      let stage5 : Vector := @@STAGE_14@@
+      let stage6 : Vector := @@STAGE_15@@
+      let stage7 : Vector := @@STAGE_16@@
+      let stage8 : Vector := @@STAGE_17@@
+      let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+        | 0 => stage0
+        | 1 => stage1
+        | 2 => stage2
+        | 3 => stage3
+        | 4 => stage4
+        | 5 => stage5
+        | 6 => stage6
+        | 7 => stage7
+        | _ => stage8
+      have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+      have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+      have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+      have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+      have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+      have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+      have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+      have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+      have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+        fin_cases s
+        · exact step0
+        · exact step1
+        · exact step2
+        · exact step3
+        · exact step4
+        · exact step5
+        · exact step6
+        · exact step7
+      have initial : PaperSharpEntriesVectorChecker.checkInitial stages (ordinaryInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 2) = true := by decide +kernel
+      have caps : PaperSharpEntriesVectorChecker.checkCaps stages 111 = true := by decide +kernel
+      have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+      exact ordinary_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 2 (by omega) (by omega) stages initial steps caps gamma
+    ·
+      let stage0 : Vector := @@STAGE_18@@
+      let stage1 : Vector := @@STAGE_19@@
+      let stage2 : Vector := @@STAGE_20@@
+      let stage3 : Vector := @@STAGE_21@@
+      let stage4 : Vector := @@STAGE_22@@
+      let stage5 : Vector := @@STAGE_23@@
+      let stage6 : Vector := @@STAGE_24@@
+      let stage7 : Vector := @@STAGE_25@@
+      let stage8 : Vector := @@STAGE_26@@
+      let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+        | 0 => stage0
+        | 1 => stage1
+        | 2 => stage2
+        | 3 => stage3
+        | 4 => stage4
+        | 5 => stage5
+        | 6 => stage6
+        | 7 => stage7
+        | _ => stage8
+      have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+      have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+      have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+      have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+      have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+      have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+      have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+      have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+      have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+        fin_cases s
+        · exact step0
+        · exact step1
+        · exact step2
+        · exact step3
+        · exact step4
+        · exact step5
+        · exact step6
+        · exact step7
+      have initial : PaperSharpEntriesVectorChecker.checkInitial stages (ordinaryInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 3) = true := by decide +kernel
+      have caps : PaperSharpEntriesVectorChecker.checkCaps stages 111 = true := by decide +kernel
+      have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+      exact ordinary_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 3 (by omega) (by omega) stages initial steps caps gamma
+    ·
+      let stage0 : Vector := @@STAGE_27@@
+      let stage1 : Vector := @@STAGE_28@@
+      let stage2 : Vector := @@STAGE_29@@
+      let stage3 : Vector := @@STAGE_30@@
+      let stage4 : Vector := @@STAGE_31@@
+      let stage5 : Vector := @@STAGE_32@@
+      let stage6 : Vector := @@STAGE_33@@
+      let stage7 : Vector := @@STAGE_34@@
+      let stage8 : Vector := @@STAGE_35@@
+      let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+        | 0 => stage0
+        | 1 => stage1
+        | 2 => stage2
+        | 3 => stage3
+        | 4 => stage4
+        | 5 => stage5
+        | 6 => stage6
+        | 7 => stage7
+        | _ => stage8
+      have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+      have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+      have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+      have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+      have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+      have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+      have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+      have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+      have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+        fin_cases s
+        · exact step0
+        · exact step1
+        · exact step2
+        · exact step3
+        · exact step4
+        · exact step5
+        · exact step6
+        · exact step7
+      have initial : PaperSharpEntriesVectorChecker.checkInitial stages (ordinaryInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 4) = true := by decide +kernel
+      have caps : PaperSharpEntriesVectorChecker.checkCaps stages 111 = true := by decide +kernel
+      have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+      exact ordinary_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 4 (by omega) (by omega) stages initial steps caps gamma
+  · constructor
+    · intro r gamma
+      fin_cases r
+      ·
+        let stage0 : Vector := @@STAGE_36@@
+        let stage1 : Vector := @@STAGE_37@@
+        let stage2 : Vector := @@STAGE_38@@
+        let stage3 : Vector := @@STAGE_39@@
+        let stage4 : Vector := @@STAGE_40@@
+        let stage5 : Vector := @@STAGE_41@@
+        let stage6 : Vector := @@STAGE_42@@
+        let stage7 : Vector := @@STAGE_43@@
+        let stage8 : Vector := @@STAGE_44@@
+        let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+          | 0 => stage0
+          | 1 => stage1
+          | 2 => stage2
+          | 3 => stage3
+          | 4 => stage4
+          | 5 => stage5
+          | 6 => stage6
+          | 7 => stage7
+          | _ => stage8
+        have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+        have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+        have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+        have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+        have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+        have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+        have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+        have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+        have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+          fin_cases s
+          · exact step0
+          · exact step1
+          · exact step2
+          · exact step3
+          · exact step4
+          · exact step5
+          · exact step6
+          · exact step7
+        have initial : PaperSharpEntriesVectorChecker.checkInitial stages (fourierInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 2) = true := by decide +kernel
+        have caps : PaperSharpEntriesVectorChecker.checkCaps stages 7247757311 = true := by decide +kernel
+        have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+        exact fourier_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 2 (by omega) (by omega) stages initial steps caps gamma
+      ·
+        let stage0 : Vector := @@STAGE_45@@
+        let stage1 : Vector := @@STAGE_46@@
+        let stage2 : Vector := @@STAGE_47@@
+        let stage3 : Vector := @@STAGE_48@@
+        let stage4 : Vector := @@STAGE_49@@
+        let stage5 : Vector := @@STAGE_50@@
+        let stage6 : Vector := @@STAGE_51@@
+        let stage7 : Vector := @@STAGE_52@@
+        let stage8 : Vector := @@STAGE_53@@
+        let stages : PaperSharpEntriesVectorChecker.VectorStages := fun s => match s.val with
+          | 0 => stage0
+          | 1 => stage1
+          | 2 => stage2
+          | 3 => stage3
+          | 4 => stage4
+          | 5 => stage5
+          | 6 => stage6
+          | 7 => stage7
+          | _ => stage8
+        have step0 : PaperSharpEntriesVectorChecker.checkStage stages 0 = true := by decide +kernel
+        have step1 : PaperSharpEntriesVectorChecker.checkStage stages 1 = true := by decide +kernel
+        have step2 : PaperSharpEntriesVectorChecker.checkStage stages 2 = true := by decide +kernel
+        have step3 : PaperSharpEntriesVectorChecker.checkStage stages 3 = true := by decide +kernel
+        have step4 : PaperSharpEntriesVectorChecker.checkStage stages 4 = true := by decide +kernel
+        have step5 : PaperSharpEntriesVectorChecker.checkStage stages 5 = true := by decide +kernel
+        have step6 : PaperSharpEntriesVectorChecker.checkStage stages 6 = true := by decide +kernel
+        have step7 : PaperSharpEntriesVectorChecker.checkStage stages 7 = true := by decide +kernel
+        have steps (s : Fin 8) : PaperSharpEntriesVectorChecker.checkStage stages s = true := by
+          fin_cases s
+          · exact step0
+          · exact step1
+          · exact step2
+          · exact step3
+          · exact step4
+          · exact step5
+          · exact step6
+          · exact step7
+        have initial : PaperSharpEntriesVectorChecker.checkInitial stages (fourierInitial (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 3) = true := by decide +kernel
+        have caps : PaperSharpEntriesVectorChecker.checkCaps stages 7247757311 = true := by decide +kernel
+        have false_caps : PaperSharpEntriesVectorChecker.checkCaps stages 0 = false := by decide +kernel
+        exact fourier_cap hcoeff (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 3 (by omega) (by omega) stages initial steps caps gamma
+    · intro r
+      fin_cases r
+      · change mixedSum h fourierMapHom (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 0 1 ≤ 7247757311
+        have direct : indexedSum hFast fourierFast (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 0 1 ≤ 7247757311 := by decide +kernel
+        rw [mixedSum_eq_indexed]
+        have hp : hFast = h := funext hFast_eq
+        have hB : (fourierFast : Byte → Byte) = fourierMapHom := funext fourierFast_spec
+        simpa only [hp, hB] using direct
+      · change mixedSum h fourierMapHom (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 0 4 ≤ 7247757311
+        have direct : indexedSum hFast fourierFast (byteOf (@@ALPHA@@ : Index)) (byteOf (@@BETA@@ : Index)) 0 4 ≤ 7247757311 := by decide +kernel
+        rw [mixedSum_eq_indexed]
+        have hp : hFast = h := funext hFast_eq
+        have hB : (fourierFast : Byte → Byte) = fourierMapHom := funext fourierFast_spec
+        simpa only [hp, hB] using direct
+#print axioms caps
+end AES8.@@NAME@@

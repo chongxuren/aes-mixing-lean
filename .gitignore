@@ -1,2 +1,18 @@
 .lake/
+.cache/
+__pycache__/
+*.pyc
+*.olean
+*.ilean
+*.olean.private
+*.olean.server
+*.ir
+*.so
 .DS_Store
+
+# Recreated by generators/generate.py; shared checker sources remain tracked.
+/AES8/Estimates/Word/PaperSharpEntriesPairA[0-9]*B*.lean
+/AES8/Estimates/Word/PaperSharpEntriesPairB[0-9]*.lean
+/AES8/Estimates/Word/PaperSharpEntriesRowA[0-9]*.lean
+/AES8/Estimates/Word/PaperSharpEntriesRow13*.lean
+/AES8/Estimates/Word/PaperSharpEntriesComplete*.lean

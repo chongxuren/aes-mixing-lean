@@ -11,21 +11,21 @@ rev = "905b95818eb32af7874a58b427f50c1711a5e96c"
 [[lean_lib]]
 name = "AESMixing"
 globs = ["AESMixing.+"]
-leanOptions = { maxHeartbeats = 8000000 }
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
 
 [[lean_lib]]
 name = "AESConcrete"
 globs = ["AESConcrete.+"]
-leanOptions = { maxHeartbeats = 8000000 }
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
 
 [[lean_lib]]
 name = "AESPaper"
 globs = ["AESPaper.+"]
-leanOptions = { maxHeartbeats = 8000000 }
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
 
 [[lean_lib]]
 name = "AESMixingProof"
-leanOptions = { maxHeartbeats = 8000000 }
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
 
 [[lean_lib]]
 name = "AESRound"
