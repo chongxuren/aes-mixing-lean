@@ -1,56 +1,33 @@
-# AES mixing: 14.3 + 73.1k
+# AES mixing in Lean
 
-A Lean proof of the following strict bounds for every natural `k` and `r >= 4 + 4*k`:
+These formalizations use independent uniform AES round keys, sampled once and
+reused across evaluations, with initial whitening and omitted final MixColumns.
+They do not cover the standard AES key schedule.
 
-```
-epsilon(r) < (2^(-12)/5) * (2^(-64)/560)^k < 2^(-14.3 - 73.1*k).
-```
+- `AESMixingProof.lean`: the original `14.3 + 73.1k` mixing bound.
+- `AES8/`: the bound `epsilon(8 + 2*k) < 7 / 2^(95 + 41*k)`, its
+  10/14/16-round corollaries, and the adaptive two-forward-query consequence.
+- `AESMixing/`, `AESConcrete/`, `AESPaper/`, `AESRound/`: shared mathematical
+  foundations, concrete AES estimates, and recurrence bounds.
 
-The decimal exponents denote the exact rationals `143/10` and `731/10`.
-The sufficient round counts for `2^-128`, `2^-192`, and `2^-256` are 12, 16, and 20.
+The new main declaration is
+`AES8.PaperAESFromCompleteEntries.epsilon_eight_plus_two`, in
+`AES8/Consequences/PaperAESFromCompleteEntries.lean`. Its complete proof and
+retained-artifact replay were checked using only `propext`, `Classical.choice`,
+and `Quot.sound`.
 
-## Model and entry points
+**Source scope:** this compact update omits the large generated finite-certificate
+Lean sources for the new theorem. Rebuilding its unconditional endpoint requires
+those omitted sources; this checkout alone is insufficient. The earlier theorem's
+sources remain included. No complete rebuild of this compact layout is claimed.
 
-`AESMixing.AES.encrypt` uses the concrete AES byte operations, initial whitening,
-and a final round without MixColumns. Its round keys are independent uniform
-128-bit states, sampled once and retained across evaluations. This is the
-independent-round-key model; it does not use the standard AES key schedule.
-`AESMixing.AES.epsilon` is the maximum half-l1 total variation distance over
-ordered distinct plaintext pairs from the uniform ordered-distinct output law.
-
-Import `AESMixingProof`:
-
-- `AESMixingProof.pair_mixing`: the complete bound above, with no analytic premise.
-- `AESMixingProof.rounds_128`, `rounds_192`, `rounds_256`: the round corollaries.
-- `AESPaper.FullPermutationOutput.output_tv_bound`: finite stopped programs using
-  zero, one, or two adaptive classical forward queries, including repeats,
-  against one uniformly sampled and retained full permutation. The private seed
-  (randomness and prior information) is finite and independent of the oracle;
-  the output type is finite.
-- `AESPaper.FullPermutationOutput.postprocessed_tv_bound`: further finite
-  deterministic postprocessing.
-
-Intermediate modules expose reusable conditional interfaces. The final theorem
-instantiates their initialization, operator, and physical-law requirements.
-
-## Build
-
-Install [elan](https://github.com/leanprover/elan), Git, and the usual Lean system
-prerequisites. From this directory:
+Lean and Mathlib versions are pinned by the existing Lake configuration. After
+installing [elan](https://github.com/leanprover/elan), build the earlier theorem:
 
 ```sh
 lake exe cache get
-lake build
-lake env lean Audit.lean
+lake build AESMixingProof
 ```
 
-`lean-toolchain` pins Lean 4.32.2; the Lake files pin Mathlib and all its package
-revisions. Internet access is needed for the first dependency/toolchain setup.
-All project-specific Lean sources, including the generated finite rank
-certificates, are included. No other research checkout, private cache, external
-certificate archive, absolute workspace path, or prebuilt project object is
-required. The standard Lean/Mathlib dependencies are installed separately by Lake.
-
-`AESMixing/` contains the finite AES and analytic foundation; `AESConcrete/`
-contains concrete word estimates; `AESPaper/` contains the fixed mixing proof and
-its query/output consequences. `AESMixingProof.lean` is the public entry point.
+Individual new modules without the omitted dependencies can be checked separately,
+for example `lake build +AES8.Math.PaperWeightedSchur`.

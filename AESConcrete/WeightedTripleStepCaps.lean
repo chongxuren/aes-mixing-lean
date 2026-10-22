@@ -1,0 +1,154 @@
+import AESConcrete.WeightedTripleCaps
+import AESConcrete.WeightedSource
+
+/-!
+# Physical aggregation and the weighted-source step cap
+
+One input multiplicity12 and four orthogonal selected output energies give
+the physical factor48. The exact certificate comparison is subsequent to
+the operator proof. Finite inventory counting is a separate final section.
+Candidate only until compilation and independent review. No new return or
+complete AES10/14/16 theorem is asserted. Constructive mathematics only;
+no attacks. The fixed independent-retained-key model remains unchanged.
+-/
+
+noncomputable section
+open scoped BigOperators
+
+namespace AESConcrete.WeightedTripleStepCaps
+open AESMixing
+open AESConcrete.ActivityMinor
+open AESConcrete.ActivityMinorInput (selectedStepKernel selectedStepKernel_action)
+open AESConcrete.RefinedWordProjection
+open AESConcrete.ResidualIncidenceCoefficient (SelectedSupport selectedSupport_card)
+open AESConcrete.RefinedStepZeros (physicalBlock)
+open AESConcrete.WordCrossZero (wordMixAddEquiv)
+open AESConcrete.WeightedTripleCaps (pieceSquaredBound pieceSquaredBound_nonneg)
+open AESRound.Terminal (lambda)
+open AESRound.Certificate (L)
+
+set_option maxRecDepth 100000
+
+private theorem action_fintype_sum {I X Y : Type*} [Fintype I] [Fintype X]
+    (K : Y → X → ℝ) (f : I → X → ℝ) :
+    action K (fun x => ∑ i, f i x) = fun y => ∑ i, action K (f i) y := by
+  funext y
+  simp only [action, Finset.mul_sum]
+  exact Finset.sum_comm
+
+/-- Charge the actual signed input-support multiplicity once. -/
+theorem selected_refined_input_energy (p : SelectedSupport 3 4)
+    (f : AES.WordState → ℝ) :
+    (∑ y, action (selectedWordTensor 3 4 p)
+      (fun x => action (refinedKernel (0 : AES.Word) 2 3) f
+        (wordMixAddEquiv.symm x)) y ^ 2) ≤
+      (ResidualIncidenceCoefficient.multiplicity (2 : Fin 5) 3 : ℝ) *
+        pieceSquaredBound * ∑ x, f x ^ 2 := by
+  rw [← selectedStepKernel_action,
+    ← ResidualIncidenceAggregation.selected_action_sum, action_fintype_sum]
+  exact ActivityMinorCaps.selected_output_energy_of_piece_energy
+    (selectedStepKernel 3 4 p) 2 3 (by decide) pieceSquaredBound pieceSquaredBound_nonneg
+    (fun pIn g => WeightedTripleCaps.selected_piece_energy p pIn g) f
+
+/-- Orthogonal physical output ranges give factor4, after the input factor12.
+The four signed inclusion-exclusion terms were not assumed orthogonal. -/
+theorem physical_weighted_energy (f : AES.WordState → ℝ) :
+    (∑ y, action (physicalBlock 12 9) f y ^ 2) ≤
+      (48 * pieceSquaredBound) * ∑ x, f x ^ 2 := by
+  rw [physicalBlock_selected_tensor_energy 12 9 (by decide) f]
+  change (∑ p : SelectedSupport 3 4, ∑ y,
+    action (selectedWordTensor 3 4 p)
+      (fun x => action (refinedKernel (0 : AES.Word) 2 3) f
+        (wordMixAddEquiv.symm x)) y ^ 2) ≤ _
+  calc
+    _ ≤ ∑ _p : SelectedSupport 3 4,
+        (ResidualIncidenceCoefficient.multiplicity (2 : Fin 5) 3 : ℝ) *
+          pieceSquaredBound * ∑ x, f x ^ 2 :=
+      Finset.sum_le_sum (fun p _ => selected_refined_input_energy p f)
+    _ = _ := by
+      simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+      rw [selectedSupport_card 3 4 (by decide)]
+      norm_num [ResidualIncidenceCoefficient.multiplicity, Nat.choose]
+      ring
+
+/-- Exact rational comparison with the unchanged `(12,9)` certificate. -/
+theorem certificate_weighted_bound :
+    0 ≤ lambda * L 12 9 ∧ 48 * pieceSquaredBound ≤ (lambda * L 12 9) ^ 2 := by
+  norm_num [pieceSquaredBound, UniformGraphScalar.rho, UniformGraphScalar.kappa,
+    ActivityCodeScalar.q, ActivityCodeScalar.s, AESRound.Terminal.lambda,
+    AESRound.Certificate.L]
+
+theorem physical_12_9_energy (f : AES.WordState → ℝ) :
+    (∑ y, action (physicalBlock 12 9) f y ^ 2) ≤
+      (lambda * L 12 9) ^ 2 * ∑ x, f x ^ 2 :=
+  (physical_weighted_energy f).trans
+    (mul_le_mul_of_nonneg_right certificate_weighted_bound.2
+      (Finset.sum_nonneg (fun x _ => sq_nonneg (f x))))
+
+theorem physical_12_9_step_cap :
+    ‖kernelOperator (physicalBlock 12 9)‖ ≤ lambda * L 12 9 :=
+  kernelOperator_norm_le _ certificate_weighted_bound.1 physical_12_9_energy
+
+theorem system_12_9_step_cap :
+    ‖PhysicalProjectionSystem.system.step 12 9‖ ≤ lambda * L 12 9 := by
+  rw [PhysicalProjectionSystem.step_eq_physical]
+  exact physical_12_9_step_cap
+
+def weightedPair (i j : Fin 14) : Prop := i = 12 ∧ j = 9
+
+instance (i j : Fin 14) : Decidable (weightedPair i j) := by
+  unfold weightedPair
+  infer_instance
+
+def certifiedPair (i j : Fin 14) : Prop :=
+  WeightedSourceStepCaps.certifiedPair i j ∨ weightedPair i j
+
+instance (i j : Fin 14) : Decidable (certifiedPair i j) := by
+  unfold certifiedPair
+  infer_instance
+
+theorem physical_step_cap (i j : Fin 14) (h : certifiedPair i j) :
+    ‖kernelOperator (physicalBlock i j)‖ ≤ lambda * L i j := by
+  rcases h with h | ⟨rfl, rfl⟩
+  · exact WeightedSourceStepCaps.physical_step_cap i j h
+  · exact physical_12_9_step_cap
+
+theorem system_step_cap (i j : Fin 14) (h : certifiedPair i j) :
+    ‖PhysicalProjectionSystem.system.step i j‖ ≤ lambda * L i j := by
+  rw [PhysicalProjectionSystem.step_eq_physical]
+  exact physical_step_cap i j h
+
+theorem predecessor_included (i j : Fin 14)
+    (h : WeightedSourceStepCaps.certifiedPair i j) : certifiedPair i j := Or.inl h
+
+theorem weightedPair_included (i j : Fin 14) (h : weightedPair i j) :
+    certifiedPair i j := Or.inr h
+
+theorem weightedPair_disjoint (i j : Fin 14) :
+    ¬ (weightedPair i j ∧ WeightedSourceStepCaps.certifiedPair i j) := by
+  revert i j
+  decide
+
+theorem weightedPair_count :
+    ((Finset.univ.product Finset.univ).filter
+      (fun ij : Fin 14 × Fin 14 => weightedPair ij.1 ij.2)).card = 1 := by decide
+
+theorem weightedPair_overlap_count :
+    ((Finset.univ.product Finset.univ).filter
+      (fun ij : Fin 14 × Fin 14 => weightedPair ij.1 ij.2 ∧
+        WeightedSourceStepCaps.certifiedPair ij.1 ij.2)).card = 0 := by decide
+
+theorem additional_weightedPair_count :
+    ((Finset.univ.product Finset.univ).filter
+      (fun ij : Fin 14 × Fin 14 => weightedPair ij.1 ij.2 ∧
+        ¬ WeightedSourceStepCaps.certifiedPair ij.1 ij.2)).card = 1 := by decide
+
+theorem certifiedPair_count :
+    ((Finset.univ.product Finset.univ).filter
+      (fun ij : Fin 14 × Fin 14 => certifiedPair ij.1 ij.2)).card = 171 := by decide
+
+theorem activity_columns_covered (i j : Fin 14)
+    (hj : ActivityCodeScalar.activityColumn j) : certifiedPair i j :=
+  predecessor_included i j (WeightedSourceStepCaps.activity_columns_covered i j hj)
+
+end AESConcrete.WeightedTripleStepCaps

@@ -19,6 +19,9 @@ attribute [local instance] Classical.propDecidable
 local instance (priority := 10000) (n : ℕ) : DecidableEq (Fin n) :=
   fun a b => Classical.propDecidable (a = b)
 set_option maxRecDepth 100000
+-- Local build overlay: the finite cube_two calculation exceeds 1.2M heartbeats.
+-- Statements and proofs are unchanged; the worker enforces a wall-clock limit.
+set_option maxHeartbeats 0
 
 def consEquiv (n : ℕ) : (Fin (n+1) → Bool) ≃ Bool × (Fin n → Bool) where
   toFun s := (s 0, fun i => s i.succ)

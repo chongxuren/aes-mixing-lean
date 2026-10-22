@@ -1,0 +1,57 @@
+import AES8.Consequences.PaperAESKS07Named
+import AES8.Consequences.PaperAESFromKS07
+import AES8.Consequences.PaperCurrentBound
+import AES8.Recurrence.PaperComparisonCertificate
+import AES8.Recurrence.PaperComparisonChecks
+import AES8.Recurrence.PaperComparisonGraphs
+import AES8.Recurrence.PaperComparisonMaps
+import AES8.Recurrence.PaperComparisonOrder
+import AES8.Recurrence.PaperComparisonReal
+import AES8.Recurrence.PaperCurrentRecurrence
+import AES8.Recurrence.PaperNormalizedOutput
+import AES8.Recurrence.PaperOutputEnvelopes
+import AES8.Recurrence.PaperParityInduction
+import AES8.Recurrence.PaperProfileAssembly
+import AES8.Reductions.Return.PaperAESIncidence
+import AES8.Reductions.Return.PaperAESOverlapLarge
+import AES8.Reductions.Return.PaperAESOverlapResources
+import AES8.Reductions.Return.PaperAESOverlapThin
+import AES8.Reductions.Source.PaperAESSourceOrientations
+import AES8.Reductions.Support.PaperPhysicalOutput
+import AES8.Math.PaperRestrictedDiffusionMass
+import AES8.Math.PaperRestrictedDiffusionLabels
+import AES8.Probability.PaperAdaptive
+import AES8.Reductions.Support.PaperSupportProjectionLaws
+import AES8.Reductions.Support.PaperSupportProjectionOutput
+import AES8.Math.PaperWeightedSchur
+import AES8.Math.PaperMDSBinary
+import AES8.Math.PaperMDSFiberAffine
+import AES8.Math.PaperPhysicalOverlap
+import AES8.Math.PaperFiberKernelPower
+import AES8.Recurrence.PaperTwoStepAlternating
+import AES8.Math.PaperRestrictedResidual
+import AES8.Math.PaperRestrictedZeroEvents
+import AES8.Math.PaperThinHolderAffine
+import AES8.Math.PaperEncodingHilbert
+import AES8.Math.PaperThinLines
+import AES8.Math.PaperThinPlaneShort
+import AES8.Reductions.Source.PaperAESSourceZeroEvents
+import AES8.Reductions.Source.PaperAESSourceActivity
+import AES8.Reductions.Source.PaperActivityMajorization
+
+import AES8.Estimates.Word.PaperWordMixedGram
+import AES8.Math.PaperCappedHilbert
+import AES8.Reductions.Return.PaperGraphResponseMatrix
+import AES8.Reductions.Return.PaperReturnDimensions
+import AES8.Reductions.Return.PaperWholeGraphReturn
+import AES8.Reductions.Return.PaperWordGraphCode
+import AES8.Reductions.Return.PaperWordGraphDuality
+import AES8.Reductions.Source.PaperAESSourceColumn
+import AES8.Reductions.Source.PaperAESSourceMarkedEnergy
+import AES8.Reductions.Source.PaperAESSourceResidual
+import AES8.Reductions.Support.PaperRoundedOutput
+import AES8.Reductions.Support.PaperSupportQuadrature
+import AES8.Consequences.PaperAESFromCompleteEntries
+/-! Entry point for current paper results and their supporting reductions.
+Finite consumers and the preserved KS07 route expose their own explicit interfaces.
+See docs/PAPER_COVERAGE.md for statement correspondence and verification evidence. -/

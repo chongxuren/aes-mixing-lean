@@ -1,0 +1,29 @@
+import AES8.Recurrence.LegacyTransfer
+import AES8.Recurrence.NormalizedProfile
+import AES8.Recurrence.PaperComparisonCertificate
+import AES8.Recurrence.PaperComparisonChecks
+import AES8.Recurrence.PaperComparisonGraphs
+import AES8.Recurrence.PaperComparisonMaps
+import AES8.Recurrence.PaperComparisonOrder
+import AES8.Recurrence.PaperComparisonPowers
+import AES8.Recurrence.PaperComparisonReal
+import AES8.Recurrence.PaperCurrentRecurrence
+import AES8.Recurrence.PaperFirstReturnComparison
+import AES8.Recurrence.PaperFirstReturnReal
+import AES8.Recurrence.PaperGraphComparisonBridge
+import AES8.Recurrence.PaperMemoryIdentity
+import AES8.Recurrence.PaperNormalizedOutput
+import AES8.Recurrence.PaperOutputEnvelopes
+import AES8.Recurrence.PaperParityInduction
+import AES8.Recurrence.PaperProfileAssembly
+import AES8.Recurrence.PaperReturnGraphOrder
+import AES8.Recurrence.PaperThinComparisonBridge
+import AES8.Recurrence.PaperTwoStep
+import AES8.Recurrence.PaperTwoStepAlternating
+import AES8.Recurrence.PaperTwoStepHilbert
+import AES8.Recurrence.PaperWholeComparisonBridge
+import AES8.Recurrence.RemainingEstimates
+import AES8.Recurrence.SupportEvolution
+import AES8.Recurrence.TransferAssembly
+
+/-! Recurrence entry point. See docs/MODULES.md for ownership and dependency routes. -/

@@ -26,3 +26,12 @@ leanOptions = { maxHeartbeats = 8000000 }
 [[lean_lib]]
 name = "AESMixingProof"
 leanOptions = { maxHeartbeats = 8000000 }
+
+[[lean_lib]]
+name = "AESRound"
+globs = ["AESRound.+"]
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
+
+[[lean_lib]]
+name = "AES8"
+moreLeanArgs = ["-j1", "-DElab.async=false", "-DmaxHeartbeats=4000000"]
